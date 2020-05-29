@@ -44,7 +44,7 @@ To get a local copy up and running follow these simple example steps.
 ### Installation
 
 1. Download the latest jar file from the [releases](https://github.com/f1nbar/PlaylistsForNewPipe/releases) section 
-2. Double click to run (if on linux you may need to make jar executable first using chmod) or
+2. Double click to run (if on linux or Mac OS you may need to make jar executable first using chmod) or
 ```sh
 java -jar PlaylistsForNewPipe.jar
 ```
