@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.Cursor;
 import java.awt.Desktop;
+import java.awt.Image;
 import java.awt.ItemSelectable;
 import java.awt.event.*;
 import java.io.IOException;
@@ -44,6 +45,9 @@ class filechooser extends JFrame implements ActionListener {
 		    e.printStackTrace();
 		}
 		JFrame f = new JFrame("Select a NewPipe DB file");
+		
+		ImageIcon icon = new ImageIcon("icon.png");
+		f.setIconImage(icon.getImage());
 
 		f.setSize(600, 100);
 		f.setResizable(false);
