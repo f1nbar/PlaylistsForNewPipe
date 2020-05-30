@@ -64,7 +64,7 @@ N.B At time of release there are intermittent issues with links to invidio.us pl
 * [sqlite-jdbc](https://github.com/xerial/sqlite-jdbc)
 * [NewPipe](https://newpipe.schabi.org/)
 * [Invidious](https://www.invidio.us/)
-
+* [Logo](https://www.instagram.com/photoshop4hire_/)
 
 
 
