@@ -108,7 +108,6 @@ class FileChooser extends JFrame implements ActionListener {
             public void itemStateChanged(ItemEvent e) {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     nameOfSelected = (String) combo.getSelectedItem();
-                    System.out.println(nameOfSelected);
                 }
             }
         });

@@ -64,7 +64,7 @@ public class Extract {
                  * playlist_stream_join with chosen playlist uid and stream id that
                  * corresponds to the playlist id
                  */
-                ResultSet rs = state.executeQuery(sql);
+                ResultSet rs = state.executeQuery(sql);;
                 while (rs.next()) {
                     String url = rs.getString(1); // second column contains youtube
                     newPlaylist.add(url);
@@ -92,9 +92,7 @@ public class Extract {
              * playlist_stream_join with chosen playlist uid and stream id that
              * corresponds to the playlist id
              */
-
             ResultSet rs2 = state.executeQuery(sql2);
-
             while (rs2.next()) {
                 String url = rs2.getString(1);
                 newPlaylist.add(url);
@@ -115,26 +113,38 @@ public class Extract {
             }
             arrayOfPlaylists.add(newPlaylist);
         }
-
         state.close();
         connection.close(); // clean up environment
-
         return arrayOfPlaylists;
 
     }
 
     void ytPlaylistFromLinks(ArrayList<String> links) {
+        boolean multiple = false;
         String play;
+        ArrayList<String> overflow = new ArrayList<>();
         if (fc.invidious) {
             play = "https://invidious.snopyta.orgwatch_videos?video_ids=";
         } else {
             play = "https://www.youtube.com/watch_videos?video_ids=";
         }
         StringBuilder sb = new StringBuilder();
-        for (String link : links) { //takes the video id section of the youtube URL and appends them to the "play" string with a comma seperator to create a playlist link
-            sb.append(link.substring(32, link.length())).append(",");
+        for (int i = 0; i < links.size(); i++) { //takes the video id section of the youtube URL and appends them to the "play" string with a comma seperator to create a playlist link
+            sb.append(links.get(i).substring(32)).append(",");
+            multiple = true;
+            if (i % 50 == 0) { //every 50 iterations as the playlists have a max length
+                play = play + sb + "&disable_polymer=true";
+                overflow.add(play);
+                sb.setLength(0); //resetting string builder
+            }
         }
-        play = play + sb;
+        if (multiple) {
+            for (String url : overflow) {
+              System.out.println(url);
+                fc.linkPlayList(overflow.get(0));
+            }
+        } else
+            play = play + sb + "&disable_polymer=true";
         fc.linkPlayList(play);
     }
 }
