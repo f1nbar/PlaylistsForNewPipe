@@ -126,7 +126,7 @@ public class Extract {
     void ytPlaylistFromLinks(ArrayList<String> links) throws IOException {
         String play;
         if (fc.invidious) {
-            play = "https://www.invidio.us/watch_videos?video_ids=";
+            play = "https://www.iteroni.com/watch_videos?video_ids=";
         } else {
             play = "https://www.youtube.com/watch_videos?video_ids=";
         }
