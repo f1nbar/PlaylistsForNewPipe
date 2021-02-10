@@ -56,7 +56,7 @@ java -jar PlaylistsForNewPipe.jar
 3. Run the PlaylistsForNewPipe.jar file, choose your playlist and format.
 4. Enjoy your newly exported playlist! Press reset to export again or choose a new playlist. 
 
-N.B At time of release there are intermittent issues with links to invidio.us playlists being blocked. This isn't a fault of the tool to my knowledge. 
+N.B [Invidio.us has shut down](https://freetube.writeas.com/the-invidious-project-will-be-shutting-down-soon) so the tool now makes use of a [mirrored instance](https://iteroni.com)
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
