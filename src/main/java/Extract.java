@@ -1,5 +1,8 @@
 //NewPipe Playlist Extractor by Finbar Ó Deaghaidh
 
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -64,7 +67,8 @@ public class Extract {
                  * playlist_stream_join with chosen playlist uid and stream id that
                  * corresponds to the playlist id
                  */
-                ResultSet rs = state.executeQuery(sql);;
+                ResultSet rs = state.executeQuery(sql);
+                ;
                 while (rs.next()) {
                     String url = rs.getString(1); // second column contains youtube
                     newPlaylist.add(url);
@@ -119,32 +123,18 @@ public class Extract {
 
     }
 
-    void ytPlaylistFromLinks(ArrayList<String> links) {
-        boolean multiple = false;
+    void ytPlaylistFromLinks(ArrayList<String> links) throws IOException {
         String play;
-        ArrayList<String> overflow = new ArrayList<>();
         if (fc.invidious) {
-            play = "https://invidious.snopyta.orgwatch_videos?video_ids=";
+            play = "https://www.invidio.us/watch_videos?video_ids=";
         } else {
             play = "https://www.youtube.com/watch_videos?video_ids=";
         }
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < links.size(); i++) { //takes the video id section of the youtube URL and appends them to the "play" string with a comma seperator to create a playlist link
-            sb.append(links.get(i).substring(32)).append(",");
-            multiple = true;
-            if (i % 50 == 0) { //every 50 iterations as the playlists have a max length
-                play = play + sb + "&disable_polymer=true";
-                overflow.add(play);
-                sb.setLength(0); //resetting string builder
-            }
+        for (String link : links) { //takes the video id section of the youtube URL and appends them to the "play" string with a comma seperator to create a playlist link
+            sb.append(link.substring(32, link.length())).append(",");
         }
-        if (multiple) {
-            for (String url : overflow) {
-              System.out.println(url);
-                fc.linkPlayList(overflow.get(0));
-            }
-        } else
-            play = play + sb + "&disable_polymer=true";
+        play = play + sb;
         fc.linkPlayList(play);
     }
 }
