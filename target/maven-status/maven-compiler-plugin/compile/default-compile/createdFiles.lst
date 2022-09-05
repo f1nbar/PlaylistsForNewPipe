@@ -1,6 +1,7 @@
+GUI/Frame$1.class
 Main.class
-FileChooser$2.class
-FileChooser$3.class
 FileChooser.class
-FileChooser$1.class
+DatabaseInterface.class
+GUI/Frame.class
 Extract.class
+GUI/FileChoose.class
