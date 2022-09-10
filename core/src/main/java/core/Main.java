@@ -1,3 +1,5 @@
+package core;
+
 import java.awt.EventQueue;
 
 import GUI.Frame;
