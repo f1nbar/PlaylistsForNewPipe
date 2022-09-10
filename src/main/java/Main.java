@@ -1,7 +1,8 @@
-import java.util.ArrayList;
-import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.EventQueue;
-import GUI.*;
+
+import GUI.Frame;
+import com.formdev.flatlaf.FlatDarkLaf;
+
 
 public class Main {
 
@@ -13,7 +14,3 @@ public class Main {
     });
   }
 }
-    // Thread t1 = new Thread(new Extract());
-    // t1.start();
-    //ArrayList<ArrayList<String>> playlist = extract.connect();
-    //extract.ytPlaylistFromLinks(playlist.get(0));

@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 public class Frame extends JFrame {
 
-public Frame() {
+  public Frame() {
     initUI();
     pack();
   }
@@ -27,9 +27,10 @@ public Frame() {
       @Override
       public void actionPerformed(ActionEvent e){
         FileChoose fileChoose = new FileChoose();
-        fileChoose.InitUI();
+        String selectedFile = fileChoose.fileSelector();
       }
     });
+
     JButton generateButton = new JButton("Generate");
 
     constraints.gridwidth = GridBagConstraints.REMAINDER;
@@ -39,6 +40,5 @@ public Frame() {
     add(fileBrowseButton, constraints);
     add(generateButton, constraints);
   }
-
 }
 

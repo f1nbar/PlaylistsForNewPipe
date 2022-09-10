@@ -1,3 +1,5 @@
+package core;
+
 import javax.swing.*;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -13,7 +15,7 @@ class FileChooser {
   //
   // }
   //
-  // FileChooser() { }
+  // core.FileChooser() { }
   //
   // public String getLabel() {
   //   return label.getText();
