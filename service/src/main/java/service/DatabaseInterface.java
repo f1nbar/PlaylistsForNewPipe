@@ -1,5 +1,4 @@
-package core;
-
+package service;
 import java.sql.*;
 
 public class DatabaseInterface {

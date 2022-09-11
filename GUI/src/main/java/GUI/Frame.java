@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import service.Extract;
 
 public class Frame extends JFrame {
 
@@ -28,6 +29,7 @@ public class Frame extends JFrame {
       public void actionPerformed(ActionEvent e){
         FileChoose fileChoose = new FileChoose();
         String selectedFile = fileChoose.fileSelector();
+        new Extract().fileHandler(selectedFile);
       }
     });
 

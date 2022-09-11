@@ -1,10 +1,8 @@
 package core;
 
 import java.awt.EventQueue;
-
 import GUI.Frame;
 import com.formdev.flatlaf.FlatDarkLaf;
-
 
 public class Main {
 

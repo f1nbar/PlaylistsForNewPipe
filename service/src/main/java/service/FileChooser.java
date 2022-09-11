@@ -1,4 +1,4 @@
-package core;
+package service;
 
 import javax.swing.*;
 import java.awt.Cursor;
