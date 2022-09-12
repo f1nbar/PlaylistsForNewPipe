@@ -9,8 +9,12 @@ public class Main {
   public static void main(String[] args) throws Exception {
     FlatDarkLaf.setup();
     EventQueue.invokeLater(() -> {
-      Frame frame = new Frame();
-      frame.setVisible(true);
+      try {
+        Frame frame = new Frame();
+        frame.setVisible(true);
+      } catch (Exception e) {
+        //TODO: handle exception
+      }
     });
   }
 }

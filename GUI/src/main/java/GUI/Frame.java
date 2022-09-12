@@ -7,12 +7,12 @@ import service.Extract;
 
 public class Frame extends JFrame {
 
-  public Frame() {
+  public Frame() throws Exception {
     initUI();
     pack();
   }
 
-  private void initUI() {
+  private void initUI() throws Exception {
     setTitle("Select a NewPipe DB file");
     setResizable(true);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,7 +29,11 @@ public class Frame extends JFrame {
       public void actionPerformed(ActionEvent e){
         FileChoose fileChoose = new FileChoose();
         String selectedFile = fileChoose.fileSelector();
-        new Extract().fileHandler(selectedFile);
+        try {
+          new Extract().fileHandler(selectedFile);
+        } catch (Exception error) {
+          System.out.println(error);
+        }
       }
     });
 
