@@ -13,8 +13,6 @@ public class FileChoose extends JFrame implements ActionListener {
     JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
     fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Zip Files or NewPipe Databases", "db", "zip"));
     fileChooser.setAcceptAllFileFilterUsed(true);
-    fileChooser.showSaveDialog(null);
-
     int result = fileChooser.showOpenDialog(this);
 
     if (result == JFileChooser.APPROVE_OPTION) {
