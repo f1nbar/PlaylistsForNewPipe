@@ -38,7 +38,7 @@ public class Extract {
   public void queryUids() throws Exception {
     ResultSet set = statement.executeQuery("SELECT playlists.uid FROM playlists;");
     while (set.next()) {
-      System.out.println(set.getInt(1)); //Here we are getting the playlist UIDs
+      // System.out.println(set.getInt(1)); //Here we are getting the playlist UIDs
     }
   }
 
@@ -55,7 +55,6 @@ public class Extract {
     //obtains the unique video part of the URL which occurs after "watch?v="
     ResultSet set = statement.executeQuery("SELECT streams.url FROM streams INNER join playlist_stream_join on streams.uid=playlist_stream_join.stream_id AND playlist_id=" + uid + ";"); 
     while (set.next()) {
-      System.out.println(set.getString(1).substring(32, set.getString(1).length())); 
       videoURLS.add(set.getString(1).substring(32, set.getString(1).length()));
     }
   }

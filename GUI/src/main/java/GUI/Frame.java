@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
+import java.io.PipedWriter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -51,14 +52,23 @@ public class Frame extends JFrame {
         try {
           extract.fileHandler(selectedFile);
           model.addAll(extract.queryNames());
-          model.removeElementAt(0); //remove placeholder
+          model.removeElementAt(0);//remove placeholder text
         } catch (Exception error) {
           System.out.println(error);
         }
       }
     });
 
-
+    generateButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e){
+        System.out.println(comboBox.getSelectedItem());
+        try {
+        } catch (Exception error) {
+          System.out.println(error);
+        }
+      }
+    });
 
     constraints.gridwidth = GridBagConstraints.REMAINDER;
     constraints.fill = GridBagConstraints.HORIZONTAL;
@@ -68,10 +78,6 @@ public class Frame extends JFrame {
     add(fileBrowseButton, constraints);
     add(comboBox, constraints);
     add(generateButton, constraints);
-  }
-
-  public void fillCombobox(ArrayList<String> playlistNames) {
-
   }
 }
 
