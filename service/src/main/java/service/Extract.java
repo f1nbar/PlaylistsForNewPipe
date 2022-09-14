@@ -42,11 +42,13 @@ public class Extract {
     }
   }
 
-  public void queryNames() throws Exception {
+  public ArrayList<String> queryNames() throws Exception {
+    ArrayList<String> playlistNames = new ArrayList<>();
     ResultSet set = statement.executeQuery("SELECT name FROM playlists;");
     while (set.next()) {
-      System.out.println(set.getString(1)); 
+      playlistNames.add(set.getString(1));
     }
+    return playlistNames;
   }
 
   public void queryVideoIDs(int uid) throws Exception {
