@@ -11,7 +11,8 @@ public class FileChoose extends JFrame implements ActionListener {
 
   public String fileSelector() {
     JFileChooser fileChooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-    fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Zip Files or NewPipe Databases", "db", "zip"));
+    fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("NewPipe Database Files", "db"));
+    fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY); //double click to select file
     fileChooser.setAcceptAllFileFilterUsed(true);
     int result = fileChooser.showOpenDialog(this);
 
@@ -22,7 +23,5 @@ public class FileChoose extends JFrame implements ActionListener {
     return "null";
   }
 
-  public void actionPerformed(ActionEvent e) {
-
-  } 
+  public void actionPerformed(ActionEvent e) {} 
 }

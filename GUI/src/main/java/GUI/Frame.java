@@ -16,6 +16,7 @@ public class Frame extends JFrame {
   static JButton generateButton, fileBrowseButton;
   static JLabel headerImage;
   static JComboBox<String> comboBox;
+  Extract extract;
 
   public Frame() throws Exception {
     initUI();
@@ -23,6 +24,8 @@ public class Frame extends JFrame {
   }
 
   private void initUI() throws Exception {
+
+    extract = new Extract();
 
     setTitle("Select a NewPipe DB file");
     setResizable(false);
@@ -46,13 +49,12 @@ public class Frame extends JFrame {
     fileBrowseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e){
-        Extract extract = new Extract();
         FileChoose fileChoose = new FileChoose();
         String selectedFile = fileChoose.fileSelector();
         try {
           extract.fileHandler(selectedFile);
           model.addAll(extract.queryNames());
-          model.removeElementAt(0);//remove placeholder text
+          model.removeElementAt(0); //remove placeholder text
         } catch (Exception error) {
           System.out.println(error);
         }
@@ -62,8 +64,9 @@ public class Frame extends JFrame {
     generateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e){
-        System.out.println(comboBox.getSelectedItem());
         try {
+          int uid = extract.getUIDFromName(comboBox.getSelectedItem().toString());
+          extract.createPlaylist(uid);
         } catch (Exception error) {
           System.out.println(error);
         }
