@@ -9,7 +9,7 @@ public class Extract {
   Statement statement;
 
   public void setNumPlaylists() throws Exception {
-    statement.executeQuery("SELECT COUNT(*) FROM playlists;").getInt(1);
+    numPlaylists = statement.executeQuery("SELECT COUNT(*) FROM playlists;").getInt(1);
   }
 
   public int getNumPlaylists() {
@@ -66,7 +66,7 @@ public class Extract {
   public void createPlaylist(int uid) throws Exception {
 
     ArrayList<String> videoURLS = queryVideoIDs(uid);
-    System.out.println(videoURLS.size());
+    // System.out.println(videoURLS.size());
     int playlistsToCreate = (videoURLS.size() / 50) + 1;
     ArrayList<ArrayList <String>> subLists = new ArrayList<>();
     ArrayList<String> generatedPlaylists = new ArrayList<>();
@@ -80,7 +80,7 @@ public class Extract {
         videoURLS.subList(0, 49).clear();;
       }
       generatedPlaylists.add(playlistStringBuilder(subLists.get(i)));
-      System.out.println(generatedPlaylists.get(i));
+      // System.out.println(generatedPlaylists.get(i));
     }
   }
 
