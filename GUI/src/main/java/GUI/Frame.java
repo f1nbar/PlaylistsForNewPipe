@@ -2,6 +2,8 @@ package GUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.PanelUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -27,14 +29,23 @@ public class Frame extends JFrame {
 
     extract = new Extract();
 
+    JTabbedPane tabbedPane = new JTabbedPane();
+    JPanel mainPanel = new JPanel();
+    JPanel playlistPanel = new JPanel();
+    tabbedPane.addTab("Extract", mainPanel);
+    tabbedPane.addTab("Playlists", playlistPanel);
+
     setTitle("Select a NewPipe DB file");
     setResizable(false);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     ImageIcon icon = new ImageIcon("images/icon.png");
     setIconImage(icon.getImage());
-    setLayout(new GridBagLayout());
+    mainPanel.setLayout(new GridBagLayout());
     setSize(400, 800);
     setVisible(true);  
+    add(tabbedPane);
+
+ 
     Image image =  ImageIO.read(new File("images/icon.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
     headerImage = new JLabel(new ImageIcon(image));
     generateButton = new JButton("Generate Playlist");
@@ -64,23 +75,25 @@ public class Frame extends JFrame {
     constraints.gridwidth = GridBagConstraints.REMAINDER;
     constraints.fill = GridBagConstraints.HORIZONTAL;
     constraints.insets = new Insets(10,10,10,10);
-
-    add(headerImage, constraints);
-    add(fileBrowseButton, constraints);
-    add(comboBox, constraints);
-    add(generateButton, constraints);
+  
+    mainPanel.add(headerImage, constraints);
+    mainPanel.add(headerImage, constraints);
+    mainPanel.add(fileBrowseButton, constraints);
+    mainPanel.add(comboBox, constraints);
+    mainPanel.add(generateButton, constraints);
 
     generateButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e){
         playlistLinks = new ArrayList<>();
         try {
-          int uid = extract.getUIDFromName(comboBox.getSelectedItem().toString());
+          String name = comboBox.getSelectedItem().toString();
+          int uid = extract.getUIDFromName(name);
           extract.createPlaylist(uid);
           extract.setNumPlaylists();
-          for (int i = 0; i < extract.getNumPlaylists(); i++) {
-            playlistLinks.add(new JButton(extract.queryNames().get(i)));
-          }
+          for (int i = 0; i < extract.getGeneratedPlaylists().size(); i++) {
+            playlistLinks.add(new JButton(name + " " + (i + 1))); 
+          }          
           for (JButton button : playlistLinks) {
             add(button, constraints);
           }
