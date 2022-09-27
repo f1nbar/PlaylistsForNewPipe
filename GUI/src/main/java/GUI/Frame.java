@@ -5,7 +5,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.PipedWriter;
 import java.util.ArrayList;
 import java.util.Vector;
 
@@ -16,6 +15,7 @@ public class Frame extends JFrame {
   static JButton generateButton, fileBrowseButton;
   static JLabel headerImage;
   static JComboBox<String> comboBox;
+  static ArrayList<JButton> playlistLinks;
   Extract extract;
 
   public Frame() throws Exception {
@@ -61,18 +61,6 @@ public class Frame extends JFrame {
       }
     });
 
-    generateButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e){
-        try {
-          int uid = extract.getUIDFromName(comboBox.getSelectedItem().toString());
-          extract.createPlaylist(uid);
-        } catch (Exception error) {
-          System.out.println(error);
-        }
-      }
-    });
-
     constraints.gridwidth = GridBagConstraints.REMAINDER;
     constraints.fill = GridBagConstraints.HORIZONTAL;
     constraints.insets = new Insets(10,10,10,10);
@@ -81,6 +69,27 @@ public class Frame extends JFrame {
     add(fileBrowseButton, constraints);
     add(comboBox, constraints);
     add(generateButton, constraints);
+
+    generateButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e){
+        playlistLinks = new ArrayList<>();
+        try {
+          int uid = extract.getUIDFromName(comboBox.getSelectedItem().toString());
+          extract.createPlaylist(uid);
+          extract.setNumPlaylists();
+          for (int i = 0; i < extract.getNumPlaylists(); i++) {
+            playlistLinks.add(new JButton(extract.queryNames().get(i)));
+          }
+          for (JButton button : playlistLinks) {
+            add(button, constraints);
+          }
+          pack();
+        } catch (Exception error) {
+          System.out.println(error);
+        }
+      }
+    });
   }
 }
 
