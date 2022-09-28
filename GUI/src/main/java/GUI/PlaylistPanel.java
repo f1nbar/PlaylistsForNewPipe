@@ -25,6 +25,8 @@ public class PlaylistPanel extends JPanel {
 
   public void showPlaylistButtons(ArrayList<JButton> playlistLinks) {
 
+    removeAll(); //clear the panel before generation of buttons
+
     for (JButton button : playlistLinks) {
       add(button, constraints);
     }
