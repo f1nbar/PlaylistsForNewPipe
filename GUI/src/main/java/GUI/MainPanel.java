@@ -76,7 +76,8 @@ public class MainPanel extends JPanel {
           for (int i = 0; i < extract.getGeneratedPlaylists().size(); i++) {
             playlistLinks.add(new JButton(name + " " + (i + 1))); 
           }
-          playlistPanel.showPlaylistButtons(playlistLinks);
+          tabbedPane.addTab("Playlists", playlistPanel);
+          playlistPanel.showPlaylistButtons(playlistLinks, extract.getGeneratedPlaylists());
           tabbedPane.setSelectedIndex(1);
           
         } catch (Exception error) {

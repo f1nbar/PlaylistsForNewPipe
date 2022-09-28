@@ -20,7 +20,6 @@ public class Frame extends JFrame {
     mainPanel = new MainPanel();
     playlistPanel = new PlaylistPanel();
     tabbedPane.addTab("Extract", mainPanel);
-    tabbedPane.addTab("Playlists", playlistPanel);
     mainPanel.initPanel(playlistPanel, tabbedPane);
     playlistPanel.initPanel();
 
