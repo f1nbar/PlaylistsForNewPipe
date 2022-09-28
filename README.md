@@ -10,7 +10,7 @@
   <h3 align="center">PlaylistsForNewPipe</h3>
 
   <p align="center">
-    core.Extract playlists from exported NewPipe database files.
+    Extract playlists from exported NewPipe database files.
 </p>
 
 
