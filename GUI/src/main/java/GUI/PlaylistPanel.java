@@ -12,5 +12,21 @@ import java.util.Vector;
 
 
 public class PlaylistPanel extends JPanel {
+  
+  GridBagConstraints constraints = new GridBagConstraints();
 
+  public void initPanel(){
+
+    setLayout(new GridBagLayout());
+    constraints.gridwidth = GridBagConstraints.REMAINDER;
+    constraints.fill = GridBagConstraints.HORIZONTAL;
+    constraints.insets = new Insets(10,10,10,10);
+  }
+
+  public void showPlaylistButtons(ArrayList<JButton> playlistLinks) {
+
+    for (JButton button : playlistLinks) {
+      add(button, constraints);
+    }
+  }
 }

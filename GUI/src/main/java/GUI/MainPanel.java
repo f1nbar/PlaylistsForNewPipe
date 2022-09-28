@@ -22,11 +22,12 @@ public class MainPanel extends JPanel {
 
   public MainPanel() {}
 
-  public void initPanel() throws Exception {
+  public void initPanel(PlaylistPanel playlistPanel, JTabbedPane tabbedPane) throws Exception {
 
     extract = new Extract();
 
     setLayout(new GridBagLayout());
+    GridBagConstraints constraints = new GridBagConstraints();
 
     Image image =  ImageIO.read(new File("images/icon.png")).getScaledInstance(100, 100, Image.SCALE_SMOOTH);
     headerImage = new JLabel(new ImageIcon(image));
@@ -37,7 +38,6 @@ public class MainPanel extends JPanel {
     DefaultComboBoxModel model = new DefaultComboBoxModel<>(playlistNames);
     comboBox = new JComboBox<>(model);
 
-    GridBagConstraints constraints = new GridBagConstraints();
     fileBrowseButton = new JButton("Select File");
     fileBrowseButton.addActionListener(new ActionListener() {
       @Override
@@ -75,10 +75,10 @@ public class MainPanel extends JPanel {
           extract.setNumPlaylists();
           for (int i = 0; i < extract.getGeneratedPlaylists().size(); i++) {
             playlistLinks.add(new JButton(name + " " + (i + 1))); 
-          }          
-          for (JButton button : playlistLinks) {
-            add(button, constraints);
           }
+          playlistPanel.showPlaylistButtons(playlistLinks);
+          tabbedPane.setSelectedIndex(1);
+          
         } catch (Exception error) {
           System.out.println(error);
         }

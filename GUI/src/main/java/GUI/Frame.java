@@ -16,12 +16,14 @@ public class Frame extends JFrame {
 
   private void initUI() throws Exception {
 
-    mainPanel = new MainPanel();
-    mainPanel.initPanel();
-
     JTabbedPane tabbedPane = new JTabbedPane();
-    JPanel playlistPanel = new JPanel();
+    mainPanel = new MainPanel();
+    playlistPanel = new PlaylistPanel();
     tabbedPane.addTab("Extract", mainPanel);
+    tabbedPane.addTab("Playlists", playlistPanel);
+    mainPanel.initPanel(playlistPanel, tabbedPane);
+    playlistPanel.initPanel();
+
 
     setTitle("Select a NewPipe DB file");
     setResizable(false);
