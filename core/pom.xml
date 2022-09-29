@@ -12,7 +12,6 @@
 
 <groupId>finbar</groupId>
 <artifactId>core</artifactId>
-<packaging>jar</packaging>
 <version>2.0</version>
 
 <properties>
@@ -28,6 +27,11 @@
       <version>2.0</version>
     </dependency>
     <dependency>
+      <groupId>finbar</groupId>
+      <artifactId>service</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.39.2.1</version>
@@ -38,15 +42,5 @@
       <version>2.4</version>
     </dependency>
   </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>
